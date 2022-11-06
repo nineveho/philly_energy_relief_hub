@@ -1,15 +1,41 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: rgb(93, 0, 0);
+    background-image: url("PNG_transparency_demonstration_1.png");
+    background-size: cover;
+    text-align: center;
+    
+}
+
 header{
-    background-color: papayawhip;
+    /*background-color: papayawhip;*/
     height: 10vh;
-
+    color: black;
+    font-weight:bolder;
+    font-size: 6rem;
+    margin: 1em;
 }
+
 main{
-    background-color: tomato;
+    /*background-color: tomato;*/
     height: 75vh;
-
 }
-footer{
-    background-color: rosybrown;
-    height: 15vh;
 
+#message-el {
+    font-style: oblique;
+    color: rgb(255, 94, 0);
+    font-size: 3rem;
+}
+
+.buttonStyle{
+    width: 15%;
+    padding: 1rem;
+    font-weight: bolder;
+    border: none;
+    border-radius: 1rem;
+    color: rgba(237, 130, 0, 0.995);
+    background-color: rgb(100, 97, 255);
+    margin: 1rem;
 }
