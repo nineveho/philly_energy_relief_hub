@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="big_calculator_container" class="calculator-contain"></div>
+    <div id="big_calculator_result"> </div>
+    <script src="crowdsource4-Becky.js"></script>
+  </body>
+</html>
+
+<style>
+
+  /* holds everything in calculator! */
+  #big_calculator_container {
+    background-color: rgb(255, 239, 213);
+    padding: 2rem;
+    text-align: center;
+    /* overflow: hidden; */
+  }
+
+  /* holds title and div of grid of questions */
+  .calculator_question_container {
+    max-width: 100%;
+    border: 2px;
+    border-color: aquamarine;
+    border-radius: 1rem;
+    border-style: outset;
+    padding: 2rem;
+  }
+
+  /* holds grid of questions */
+  .calculator_choices_container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1rem;
+  }
+
+  .choices_normal {
+    padding: 0.5rem;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: pink;
+    transition: 0.2s ease-in-out;
+  }
+
+  .choices_normal:hover {
+    background-color: rgb(255, 226, 255);
+    transition: 0.2s ease-in-out;
+  }
+
+  .choices_selected {
+    background-color: rgb(183, 231, 250);
+    color: white;
+    font-weight: bold;
+  }
+
+  .choices_selected:hover {
+    background-color: rgb(183, 231, 250);
+    color: white;
+    font-weight: bold;
+  }
+
+
+
+  #big_calculator_result{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+    border: 2px;
+    border-color: cadetblue;
+    height: 100vh;
+    padding: 5rem;
+    text-align: center;
+    background-color: azure;
+  }
+
+  .calculator_result_summary{
+    background-color: rgb(157, 255, 95);
+
+    /* temporary */
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    align-content:stretch;
+    display: grid;
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+
+  .calculator_result_summary_items{
+    border: 10px;
+    border-color: blueviolet; 
+    padding: 1rem;
+    background-color: aquamarine;
+    /* why border not working  */
+  }
+
+  .calculator_result_suggestions{
+    background-color: rgb(255, 1, 196);
+
+    /* temporary */
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+  }
+
+  .responseEach{
+    width: 90%;
+    padding: 1rem;
+    background-color: cornflowerblue;
+  }
+
+
+
+
+
+
+
+
+  calculator {
+    padding: 2em;
+    display: flexbox;
+    justify-content: center;
+  }
+
+  li.calItem {
+    background-color: beige;
+    padding-inline: 0.5em;
+    margin: 0.5em;
+    list-style-type: none;
+    line-height: 30px;
+    width: max-content;
+    border-radius: 0.5em;
+  }
+
+  .calSubGroup {
+    background-color: rgb(183, 231, 250);
+    display: flex;
+    padding: 1rem;
+  }
+
+  li.selectedButton {
+    background-color: salmon;
+  }
+
+
+
+
+</style>
