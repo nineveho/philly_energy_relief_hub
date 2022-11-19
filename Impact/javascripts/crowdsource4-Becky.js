@@ -11,16 +11,10 @@ const calculatorQuestions = [
     title: "What is your household size?",
     abbrev: "household size",
     numberOfOptions: 8,
-    listOfOptions: [1, 2, 3, 4, 5, 6, 7, 8],
+    listOfOptions: [1, 2, 3, 4, 5, 6, 7, "more"],
     questionType: "single",
     response: [],
-    // answers:{
-    //     1: 500,
-    //     2: 300,
-    //     3: 400,
-    //     4: 400,
-    //     5: 100,
-    // }
+    answers:"",
   },
   {
     //do we wanna do this as a slider
@@ -28,14 +22,18 @@ const calculatorQuestions = [
     abbrev: "income",
     numberOfOptions: 8,
     listOfOptions: [
-      "10000-20000",
-      "20000-30000",
-      "30000-40000",
-      "40000-50000",
+      "10K-20K",
+      "20K-30K",
+      "30K-40K",
+      "40K-50K",
       "50k-60k",
+      "60k-70k",
+      "70k-80k",
+      "80k-90k",
     ],
     questionType: "single",
     response: [],
+    answers:"",
   },
   {
     title: "how old is your house",
@@ -49,6 +47,7 @@ const calculatorQuestions = [
     ],
     questionType: "single",
     response: [],
+    answers:"",
   },
   {
     title: "What are your concerns?",
@@ -62,14 +61,16 @@ const calculatorQuestions = [
     ],
     questionType: "multiple",
     response: [],
+    answers:"",
   },
   {
-    title: "what is your favourite fruit",
+    title: "what is your favourite dessert",
     abbrev: "fruit",
     numberOfOptions: 5,
-    listOfOptions: ["apple", "orange", "grapes", "banana", "kiwi"],
+    listOfOptions: ["tiramisu", "affogato", "lava cake", "gelato", "I'm healthy no sweets"],
     questionType: "multiple",
     response: [],
+    answers:"",
   },
 ];
 
@@ -97,7 +98,7 @@ calculatorQuestions.forEach((el, index) => {
     choices.innerHTML = el.listOfOptions[i];
 
     // create a function to handle the click
-    function handleClick(){
+    function handleClick() {
       const proposedValue = i;
       /**WHEN CLICKED
        * if, multiple type,
@@ -139,7 +140,6 @@ calculatorQuestions.forEach((el, index) => {
     }
     choices.addEventListener("click", handleClick);
     choicesContainer.append(choices);
-    console.log("hi")
   }
 
   //   const pickedAnswer = document.createElement("div");
@@ -155,17 +155,10 @@ calculatorQuestions.forEach((el, index) => {
 });
 
 //LASTLY... create a submit button!
-const submitButton = document.createElement("button")
-submitButton.innerHTML = "submit!"
-submitButton.addEventListener("click", ()=>{
-  calculatorQuestions.forEach(el=>{
-    console.log(el.response[0])
-  })
-}
-)
-container.append(submitButton)
-
-
+const submitButton = document.createElement("button");
+submitButton.innerHTML = "submit!";
+submitButton.classList.add("submit-button");
+container.append(submitButton);
 
 ////.....CREATING THE RESPONSE TAB.....////
 
@@ -183,15 +176,15 @@ const calcResultContainer = document.querySelector("#big_calculator_result");
 
 //2
 /**create Parent A *
- * for each question, 
+ * for each question,
  *  create div parent_s
- *  get title -> create div -> add text string via innerHTML 
+ *  get title -> create div -> add text string via innerHTML
  *      parent_s A. append()
- *  get responses -> 
+ *  get responses ->
  *      for each item in list > create div -> add text strings
  *      parent_s A. append()
  *  Parent A.append(parent_s)
- */     
+ */
 const calcResultSummary = document.createElement("div");
 calcResultSummary.classList.add("calculator_result_summary");
 const calResultSummaryTitle = document.createElement("h4");
@@ -199,33 +192,42 @@ calResultSummaryTitle.innerHTML = "Your Responses";
 
 calcResultSummary.append(calResultSummaryTitle);
 
-calculatorQuestions.forEach((el)=>{
-    //each response has a 
-    const calcResultSummaryInd = document.createElement("div")
-    calcResultSummaryInd.classList.add("calculator_result_summary_items")
-    //title
-    const title_abbrev = document.createElement('h5')
-    title_abbrev.innerHTML = el.abbrev
-    //responses
-    const responseEach = document.createElement("div")
-    responseEach.classList.add("responseEach")
-    responseEach.innerHTML = el.response
-    //console.log(el.response)
-    //add children to the parent
-    calcResultSummaryInd.append(title_abbrev)
-    calcResultSummaryInd.append(responseEach)
-    calcResultSummary.append(calcResultSummaryInd)
-    
-})
+calculatorQuestions.forEach((el) => {
+  //each response has a
+  const calcResultSummaryInd = document.createElement("div");
+  calcResultSummaryInd.classList.add("calculator_result_summary_items");
+  //title
+  const title_abbrev = document.createElement("h5");
+  title_abbrev.innerHTML = el.abbrev;
+  //responses
+  let responseEach = document.createElement("div");
+  responseEach.classList.add("responseEach");
+  submitButton.addEventListener("click", () => {
+    el.answers = el.listOfOptions[el.response[0]]
+    responseEach.innerHTML = el.answers;
+    console.log(el.response);
+  });
+  ////responseEach.innerHTML = el.response[0]
+  ////console.log(el.response)
+  //console.log(el.response)
+  //add children to the parent
+  calcResultSummaryInd.append(title_abbrev);
+  calcResultSummaryInd.append(responseEach);
+  calcResultSummary.append(calcResultSummaryInd);
+});
+
+
 /**
  * think about how user can share the information (email?pdf?)
-*/
+ */
 
-
-//3
+//3 Create a block for suggestions 
 const calcResultSuggest = document.createElement("div");
 calcResultSuggest.classList.add("calculator_result_suggestions");
+
 
 //final
 calcResultContainer.append(calcResultSummary);
 calcResultContainer.append(calcResultSuggest);
+calcResultContainer.append(calcResultSuggest);
+
