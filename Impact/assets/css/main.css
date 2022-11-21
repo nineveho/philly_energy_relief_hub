@@ -2840,3 +2840,12 @@ section {
   padding: 1rem;
   border-radius: 1rem;
 }
+
+.calculator_result_suggestions_items {
+  border: forestgreen 2px;
+  border-style: solid;
+  border-radius: 1rem;
+  padding: 1rem;
+  align-content: center;
+  /* why border not working  */
+}
