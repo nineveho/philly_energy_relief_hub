@@ -101,54 +101,78 @@ calculatorQuestions.forEach((el, index) => {
   choicesContainer.classList.add("calculator_choices_container");
 
   // Childrens of Parent B - iterative
-  for (let i = 0; i < el.numberOfOptions; i++) {
-    const choices = document.createElement("button");
+  if(el.questionType == "single") {
+    const choices = document.createElement("select");
+    choices.id = el.abbrev;
     choices.classList.add("choices_normal");
-    choices.innerHTML = el.listOfOptions[i];
 
-    // create a function to handle the click
-    function handleClick() {
-      const proposedValue = i;
-      /**WHEN CLICKED
-       * if, multiple type,
-       *  if, already stored in response array-> remove,
-       *  else, store in response array
-       * if single type,
-       *  store in response array (replace previous item)
-       */
-      if (el.questionType === "multiple") {
-        if (el.response.includes(proposedValue)) {
-          const indexToRemove = el.response.indexOf(proposedValue);
-          el.response.splice(indexToRemove, 1);
-          choices.classList.remove("choices_selected");
-        } else {
-          el.response.push(proposedValue);
-          choices.classList.add("choices_selected");
-          //console.log(el.response)
-        }
-      } else {
-        el.response = [proposedValue];
-        /**
-         * if, choice contain class "choices_selected"
-         *  remove "choices_selected"
-         * else,
-         *  add "choices_selected"
+    for (let i = 0; i < el.numberOfOptions; i++) {
+      // create dropdown for single choice questions
+      if (el.questionType == "single") {
+        var option = document.createElement("option");
+        option.value = el.listOfOptions[i];
+        option.text = option.value;
+        choices.appendChild(option)
+      }
+    }
+
+    choicesContainer.append(choices);
+
+  // create little select boxes for multi choice questions
+  } else if (el.questionType == "multiple") {
+
+    //loop over options for this question
+    for (let i = 0; i < el.numberOfOptions; i++) {
+
+      const choices = document.createElement("button");
+      choices.classList.add("choices_normal");
+      choices.innerHTML = el.listOfOptions[i];
+
+      // create a function to handle the click
+      function handleClick() {
+        const proposedValue = i;
+        /**WHEN CLICKED
+         * if, multiple type,
+         *  if, already stored in response array-> remove,
+         *  else, store in response array
+         * if single type,
+         *  store in response array (replace previous item)
          */
-        if (choices.classList.contains("choices_selected")) {
-          choices.classList.remove("choices_selected");
+        if (el.questionType === "multiple") {
+          if (el.response.includes(proposedValue)) {
+            const indexToRemove = el.response.indexOf(proposedValue);
+            el.response.splice(indexToRemove, 1);
+            choices.classList.remove("choices_selected");
+          } else {
+            el.response.push(proposedValue);
+            choices.classList.add("choices_selected");
+            //console.log(el.response)
+          }
         } else {
-          choices.classList.add("choices_selected");
-          //console.log(el.response)
-        }
-        for (let i = 0; i < choicesContainer.children.length; i++) {
-          if (i != el.response) {
-            choicesContainer.children[i].classList.remove("choices_selected");
+          el.response = [proposedValue];
+          /**
+           * if, choice contain class "choices_selected"
+           *  remove "choices_selected"
+           * else,
+           *  add "choices_selected"
+           */
+          if (choices.classList.contains("choices_selected")) {
+            choices.classList.remove("choices_selected");
+          } else {
+            choices.classList.add("choices_selected");
+            //console.log(el.response)
+          }
+          for (let i = 0; i < choicesContainer.children.length; i++) {
+            if (i != el.response) {
+              choicesContainer.children[i].classList.remove("choices_selected");
+            }
           }
         }
       }
+        
+      choices.addEventListener("click", handleClick);
+      choicesContainer.append(choices);
     }
-    choices.addEventListener("click", handleClick);
-    choicesContainer.append(choices);
   }
 
   //   const pickedAnswer = document.createElement("div");
@@ -211,10 +235,32 @@ const reliefPrograms = [
 // do everything only upon click 
 submitButton.addEventListener("click", () => {
 
+  // get the original calculator and shrink it
+  const container = document.getElementById("big_calculator_container")
+  // container.style.padding = 0
+  // container.style.maxHeight = "0px"
+  // container.style.opacity = 0
+
+  container.classList.add("hidden")
+
+  // make the result container visible before populating it with suggestions
+  const resultContainer = document.getElementById("big_calculator_result")
+  resultContainer.style.opacity = 1
+  window.scrollTo(0, 0);
+
+  // get user's values from dropdowns
+  calculatorQuestions.forEach((el) => {
+    //console.log(el.abbrev)
+    if(el.questionType == "single") {
+      const proposedValue = document.getElementById(el.abbrev).value;
+      el.response = [proposedValue]
+    }    //console.log(el.response)
+  });  
+
   //parameters we've gotten from the user's input
-  const householdsize = calculatorQuestions[0].listOfOptions[calculatorQuestions[0].response[0]] 
-  const annualincome = calculatorQuestions[1].rangeMin[calculatorQuestions[1].response[0]] 
-  const interests = calculatorQuestions[3].response.map(x => calculatorQuestions[3].listOfOptions[x]) 
+  const householdsize = calculatorQuestions[0].response[0]
+  const annualincome = calculatorQuestions[1].response[0] //need to make this numeric
+  const interests = calculatorQuestions[3].response 
 
   //QC print out those values
   console.log(householdsize)
@@ -263,7 +309,11 @@ submitButton.addEventListener("click", () => {
     responseEach.classList.add("responseEach");
 
     //need to make sure multiple choice shows all objects
-    responseEach.innerHTML = el.response.map(x => el.listOfOptions[x]).join(', ');
+    if (el.questionType == "single") {
+      responseEach.innerHTML = el.response.join(', ');
+    } else {
+      responseEach.innerHTML = el.response.map(x => el.listOfOptions[x]).join(', ')
+    }
     console.log(el.response);
       
     ////responseEach.innerHTML = el.response[0]

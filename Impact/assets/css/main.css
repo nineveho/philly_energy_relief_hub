@@ -2722,10 +2722,26 @@ section {
  /* holds everything in calculator! */
  #big_calculator_container {
   background-color: #006a5d;
-  padding: 4rem;
   text-align: center;
   border-radius: 2rem;
-  color: whitesmoke
+  color: whitesmoke;
+
+}
+
+
+.calculator-contain{
+  padding: 4rem;
+  transition: 0.5s ease-in-out;
+  overflow: hidden;
+  max-height: 250vh;
+  opacity: 1;
+
+}
+
+.hidden{
+  opacity: 0;
+  max-height: 0;
+  padding: 0;
 }
 
 /* holds title and div of grid of questions */
@@ -2797,10 +2813,13 @@ section {
   border: var(--color-primary);
   border-style: solid;
   border-radius: 2rem;
-  height: 100vh;
+  /* niko commented this out to allow for natural (auto) flow */
+  /* height: 100vh; */
   padding: 5rem;
   text-align: center;
   background-color: azure;
+  opacity: 0;
+  transition: 0.5s ease-in-out;
 }
 
 .calculator_result_summary {
