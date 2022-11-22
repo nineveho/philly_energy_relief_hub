@@ -229,37 +229,36 @@ const reliefPrograms = [
   }
 ]
 
-//nineveh note: this should really all render on an entirely new webpage
 ////.....CREATING THE RESPONSE TAB.....////
+//nineveh note of to do after meeting with niko:
+// - add a "back" button
+// - use CSS classes efficiently to allow flexibility of presentation
+// - need to translate string to numeric for income range
+// - move dropdowns to right side, no need to be below
 
-// do everything only upon click 
+
+// render calculator results only upon click of "submit" button
 submitButton.addEventListener("click", () => {
 
-  // get the original calculator and shrink it
-  const container = document.getElementById("big_calculator_container")
-  // container.style.padding = 0
-  // container.style.maxHeight = "0px"
-  // container.style.opacity = 0
+  // get the original calculator input and shrink it
+  document.getElementById("big_calculator_container").classList.add("hidden_input")
 
-  container.classList.add("hidden")
-
-  // make the result container visible before populating it with suggestions
+  // make the result container visible before populating contents
   const resultContainer = document.getElementById("big_calculator_result")
   resultContainer.style.opacity = 1
   window.scrollTo(0, 0);
 
-  // get user's values from dropdowns
+  //get user's values from dropdowns
   calculatorQuestions.forEach((el) => {
-    //console.log(el.abbrev)
     if(el.questionType == "single") {
       const proposedValue = document.getElementById(el.abbrev).value;
       el.response = [proposedValue]
-    }    //console.log(el.response)
+    }
   });  
-
+  
   //parameters we've gotten from the user's input
   const householdsize = calculatorQuestions[0].response[0]
-  const annualincome = calculatorQuestions[1].response[0] //need to make this numeric
+  const annualincome = calculatorQuestions[1].response[0] //nineveh note: need to make this numeric
   const interests = calculatorQuestions[3].response 
 
   //QC print out those values
@@ -298,7 +297,7 @@ submitButton.addEventListener("click", () => {
   calcResultSummary.append(calcResultSummaryTitle);
 
   calculatorQuestions.forEach((el) => {
-    //each response has a
+    //each response has a div
     const calcResultSummaryInd = document.createElement("div");
     calcResultSummaryInd.classList.add("calculator_result_summary_items");
     //title
@@ -310,15 +309,11 @@ submitButton.addEventListener("click", () => {
 
     //need to make sure multiple choice shows all objects
     if (el.questionType == "single") {
-      responseEach.innerHTML = el.response.join(', ');
+      responseEach.innerHTML = el.response;
     } else {
       responseEach.innerHTML = el.response.map(x => el.listOfOptions[x]).join(', ')
     }
-    console.log(el.response);
       
-    ////responseEach.innerHTML = el.response[0]
-    ////console.log(el.response)
-    //console.log(el.response)
     //add children to the parent
     calcResultSummaryInd.append(title_abbrev);
     calcResultSummaryInd.append(responseEach);
