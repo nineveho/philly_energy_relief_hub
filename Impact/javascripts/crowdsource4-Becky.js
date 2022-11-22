@@ -80,15 +80,13 @@ const calculatorQuestions = [
   }
 ];
 
-console.log(calculatorQuestions)
-
-//What does this function do? Looks like it handles the user interactivity, ya?
+// create the calculator input view and buttons within
 calculatorQuestions.forEach((el, index) => {
   // Grand Parent: create original container that is the parent to specific question
   const calculatorContainer = document.createElement("div");
   calculatorContainer.classList.add("calculator_question_container");
 
-  // Parent A:create the tile
+  // Parent A: create the title, i.e. state the question
   const questionTitle = document.createElement("h3");
   questionTitle.innerHTML = el.title;
 
@@ -98,14 +96,16 @@ calculatorQuestions.forEach((el, index) => {
 
   // Parent B - Parent: create parent container of choices
   const choicesContainer = document.createElement("div");
-  choicesContainer.classList.add("calculator_choices_container");
 
   // Childrens of Parent B - iterative
   if(el.questionType == "single") {
+
+    // add dropdown element
     const choices = document.createElement("select");
     choices.id = el.abbrev;
     choices.classList.add("choices_normal");
 
+    // populate dropdown with options
     for (let i = 0; i < el.numberOfOptions; i++) {
       // create dropdown for single choice questions
       if (el.questionType == "single") {
@@ -116,10 +116,13 @@ calculatorQuestions.forEach((el, index) => {
       }
     }
 
+    // nest dropdown in the parent container of choices
     choicesContainer.append(choices);
 
   // create little select boxes for multi choice questions
   } else if (el.questionType == "multiple") {
+
+    choicesContainer.classList.add("calculator_choices_container");
 
     //loop over options for this question
     for (let i = 0; i < el.numberOfOptions; i++) {
@@ -174,10 +177,6 @@ calculatorQuestions.forEach((el, index) => {
       choicesContainer.append(choices);
     }
   }
-
-  //   const pickedAnswer = document.createElement("div");
-  //   pickedAnswer.id = `${index}_item`;
-  //choicesContainer.append(pickedAnswer);
 
   //   append all objects to the parent container
   calculatorContainer.append(questionTitle);
@@ -234,7 +233,7 @@ const reliefPrograms = [
 // - add a "back" button
 // - use CSS classes efficiently to allow flexibility of presentation
 // - need to translate string to numeric for income range
-// - move dropdowns to right side, no need to be below
+// - left align text for "What are your concerns", idk why it's not doing that...
 
 
 // render calculator results only upon click of "submit" button

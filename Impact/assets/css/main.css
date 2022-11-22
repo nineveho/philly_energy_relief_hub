@@ -2752,12 +2752,21 @@ section {
   border-style: outset;
   padding: 2rem;
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* holds grid of questions */
+/* holds dropdown of single-choice questions */
+.calculator_select_container {
+  max-width: 20%;
+  margin-top: 1rem;
+}
+
+/* holds grid of multi-choice questions */
 .calculator_choices_container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
