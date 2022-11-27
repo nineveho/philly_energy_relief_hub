@@ -195,6 +195,7 @@ backButton.classList.add("submit-button");
 // - program full name
 // - income thresholds by household size
 // - concern areas pertinent to program
+// - whether the program is available only to homeowners
 const reliefPrograms = [
   {
     "name": 'Basic Systems Repair Program',
@@ -207,10 +208,12 @@ const reliefPrograms = [
     "7": 78450,
     "8": 83500,
     "more": 5050,
-    "tags":['Insulation', 'General Home Repairs']
+    "tags":['Insulation', 'General Home Repairs'],
+    "flagOwnersOnly": 1
   },
   {
     "name": 'LIHEAP',
+    //150 perfect federal poverty level
     "1": 20385,
     "2": 27465,
     "3": 34545,
@@ -220,15 +223,42 @@ const reliefPrograms = [
     "7": 62865,
     "8": 69945,
     "more": 7080,
-    "tags":['Direct Bill Payment']
+    "tags":['Direct Bill Payment'],
+    "flagOwnersOnly": 0
+  },
+  {
+    "name": 'Heater Hotline',
+    //150 percent federal poverty level
+    "1": 20385,
+    "2": 27465,
+    "3": 34545,
+    "4": 41625,
+    "5": 48705,
+    "6": 55785,
+    "7": 62865,
+    "8": 69945,
+    "more": 7080,
+    "tags":['Broken Heat or A/C'],
+    "flagOwnersOnly": 1
+  },
+  {
+    "name": 'Weatherization Assistance Program',
+    //200 percent federal poverty level
+    "1": 27180,
+    "2": 36620,
+    "3": 46060,
+    "4": 55500,
+    "5": 64940,
+    "6": 74380,
+    "7": 83820,
+    "8": 93260,
+    "more": 9440, //inferred based on above
+    "tags":['Insulation', 'General Home Repairs'],
+    "flagOwnersOnly": 1 //need to research this
   }
 ]
 
 ////.....CREATING THE RESPONSE TAB.....////
-//nineveh note of to do after meeting with niko:
-// - add a "back" button
-// - use CSS classes efficiently to allow flexibility of presentation
-
 
 // render calculator results only upon click of "submit" button
 submitButton.addEventListener("click", () => {
