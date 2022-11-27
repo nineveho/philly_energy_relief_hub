@@ -2737,7 +2737,7 @@ section {
 
 }
 
-.hidden_input{
+.hidden{
   opacity: 0;
   max-height: 0;
   padding: 0;
@@ -2828,12 +2828,7 @@ section {
   background-color: azure;
   opacity: 0;
   transition: 0.5s ease-in-out;
-}
-
-.hidden_results{
-  opacity: 0;
-  max-height: 0;
-  padding: 0;
+  overflow: hidden;
 }
 
 .calculator_result_summary {

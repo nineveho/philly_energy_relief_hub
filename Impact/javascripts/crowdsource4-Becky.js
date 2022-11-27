@@ -9,16 +9,14 @@ const title = document.createElement("h1");
 //Create object to hold all questions with uniform structure
 // 1. title of question
 // 2. abbrev, question title for response page
-// 3. number of options
-// 4. list of options for the user to choose from
-// 5. single or multiple choice?
-// 6. response, as an index within listOfOptions
+// 3. list of options for the user to choose from
+// 4. single or multiple choice?
+// 5. response, as an index within listOfOptions
 const calculatorQuestions = [
   {
     //nineveh note: we should change this to box to type in positive integer
     title: "How many people live in your household?",
     abbrev: "household size",
-    numberOfOptions: 8,
     listOfOptions: [1, 2, 3, 4, 5, 6, 7, "more"],
     questionType: "single",
     response: [],
@@ -27,27 +25,23 @@ const calculatorQuestions = [
     //nineveh note: we should change this to a dropdown, or maybe slider
     title: "What is your annual household income?",
     abbrev: "income",
-    numberOfOptions: 8,
     listOfOptions: [
-      "10K-20K",
-      "20K-30K",
-      "30K-40K",
-      "40K-50K",
-      "50k-60k",
-      "60k-70k",
-      "70k-80k",
-      "80k-90k",
-    ],
-    //one additional element here: numeric range equivalent
-    rangeMin: [
-      10000,
-      20000,
-      30000,
-      40000,
-      50000,
-      60000,
-      70000,
-      80000
+      "less than $20,000",
+      "$20-25,000",
+      "$25-30,000",
+      "$30-35,000",
+      "$35-40,000",
+      "$40-45,000",
+      "$45-50,000",
+      "$50-55,000",
+      "$55-60,000",
+      "$60-65,000",
+      "$65-70,000",
+      "$70-75,000",
+      "$75-80,000",
+      "$80-85,000",
+      "$85-90,000",
+      "greater than $90,000"
     ],
     questionType: "single",
     response: [],
@@ -55,7 +49,6 @@ const calculatorQuestions = [
   {
     title: "Do you rent or own your home?",
     abbrev: "ownership",
-    numberOfOptions: 2,
     listOfOptions: [
       "Rent",
       "Own"
@@ -66,7 +59,6 @@ const calculatorQuestions = [
   {
     title: "What are your concerns?",
     abbrev: "concerns",
-    numberOfOptions: 6,
     listOfOptions: [
       "Direct Bill Payment",
       "Insulation",
@@ -106,7 +98,7 @@ calculatorQuestions.forEach((el, index) => {
     choices.classList.add("choices_normal");
 
     // populate dropdown with options
-    for (let i = 0; i < el.numberOfOptions; i++) {
+    for (let i = 0; i < el.listOfOptions.length; i++) {
       // create dropdown for single choice questions
       if (el.questionType == "single") {
         var option = document.createElement("option");
@@ -125,7 +117,7 @@ calculatorQuestions.forEach((el, index) => {
     choicesContainer.classList.add("calculator_choices_container");
 
     //loop over options for this question
-    for (let i = 0; i < el.numberOfOptions; i++) {
+    for (let i = 0; i < el.listOfOptions.length; i++) {
 
       const choices = document.createElement("button");
       choices.classList.add("choices_normal");
@@ -186,12 +178,16 @@ calculatorQuestions.forEach((el, index) => {
   container.append(calculatorContainer);
 });
 
-//LASTLY... create a submit button!
+// create a submit button!
 const submitButton = document.createElement("button");
 submitButton.innerHTML = "submit!";
 submitButton.classList.add("submit-button");
 container.append(submitButton);
 
+// similarly, create a back button -- will only be visible after submission
+const backButton = document.createElement("button");
+backButton.innerHTML = "go back";
+backButton.classList.add("submit-button");
 
 ////.....DECIDING CALCULATOR OUTPUT.....////
 
@@ -232,19 +228,27 @@ const reliefPrograms = [
 //nineveh note of to do after meeting with niko:
 // - add a "back" button
 // - use CSS classes efficiently to allow flexibility of presentation
-// - need to translate string to numeric for income range
-// - left align text for "What are your concerns", idk why it's not doing that...
 
 
 // render calculator results only upon click of "submit" button
 submitButton.addEventListener("click", () => {
 
   // get the original calculator input and shrink it
-  document.getElementById("big_calculator_container").classList.add("hidden_input")
+  document.getElementById("big_calculator_container").classList.add("hidden")
+
+  /**
+   * 1. create a new grandparent div id="big_calculator_result" for result page --> done
+   *      ---> move the div to a new page if needed
+   * 2. create a parent A div with result
+   * 3. create a parent B div with suggestions
+   *
+   * Final: add parents A B to grandparent's home
+   */
+  const calcResultContainer = document.querySelector("#big_calculator_result");
+  calcResultContainer.classList.remove("hidden")
 
   // make the result container visible before populating contents
-  const resultContainer = document.getElementById("big_calculator_result")
-  resultContainer.style.opacity = 1
+  calcResultContainer.style.opacity = 1
   window.scrollTo(0, 0);
 
   //get user's values from dropdowns
@@ -257,27 +261,17 @@ submitButton.addEventListener("click", () => {
   
   //parameters we've gotten from the user's input
   const householdsize = calculatorQuestions[0].response[0]
-  const annualincome = calculatorQuestions[1].response[0] //nineveh note: need to make this numeric
   const interests = calculatorQuestions[3].response 
+
+  // make annual income numeric at minimum of range
+  dollar_position = calculatorQuestions[1].response[0].indexOf('$')
+  const annualincome = Number(calculatorQuestions[1].response[0].substring(dollar_position + 1, dollar_position + 3) + "000")
 
   //QC print out those values
   console.log(householdsize)
   console.log(annualincome)
   console.log(interests)
 
-  /**
-   * 1. create a new grandparent div id="big_calculator_result" for result page --> done
-   *      ---> move the div to a new page if needed
-   * 2. create a parent A div with result
-   * 3. create a parent B div with suggestions
-   *
-   * Final: add parents A B to grandparent's home
-   */
-
-  //1
-  const calcResultContainer = document.querySelector("#big_calculator_result");
-
-  //2
   /**create Parent A *
    * for each question,
    *  create div parent_s
@@ -386,17 +380,33 @@ submitButton.addEventListener("click", () => {
 
   });
 
-  //final
+  //finally add all elements to parent
   calcResultContainer.append(calcResultSummary);
   calcResultContainer.append(calcResultSuggest);
-  calcResultContainer.append(calcResultSuggest);
+
+  // add the back button, make sure it's centered in the grid
+  backButton.style.gridColumnStart = 1;
+  backButton.style.gridColumnEnd = 3;
+  backButton.style.placeSelf = "center";
+  calcResultContainer.append(backButton);
 
 })
 
+// upon click on back button, return to calculator input to allow edits
+backButton.addEventListener("click", () => {
 
+  // toss the old calculator results and collapse container
+  while (big_calculator_result.firstChild) {
+    big_calculator_result.removeChild(big_calculator_result.firstChild);
+  }
+  const calcResultContainer = document.getElementById("big_calculator_result")
+  calcResultContainer.classList.add("hidden")
+  calcResultContainer.style.opacity = 0
+  
+  //re-display the original calculator input and toss the old results
+  document.getElementById("big_calculator_container").classList.remove("hidden")
 
- 
+  // make the input container visible 
+  window.scrollTo(0, 0);
 
-
-
-
+})
