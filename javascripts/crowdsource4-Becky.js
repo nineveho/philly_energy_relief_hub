@@ -291,6 +291,7 @@ submitButton.addEventListener("click", () => {
   
   //parameters we've gotten from the user's input
   const householdsize = calculatorQuestions[0].response[0]
+  const homeowner = calculatorQuestions[2].response
   const interests = calculatorQuestions[3].response 
 
   // make annual income numeric at minimum of range
@@ -351,6 +352,9 @@ submitButton.addEventListener("click", () => {
   const calcResultSuggest = document.createElement("div");
   calcResultSuggest.classList.add("calculator_result_suggestions");
 
+  //maintain a tally of the number of programs that the user has matched with
+  const countProgramMatches = 0
+
   // flesh out suggestions: function to evaluate program eligibility
   // and populate suggestions on calculator results page
   reliefPrograms.forEach((prog) => {
@@ -371,7 +375,9 @@ submitButton.addEventListener("click", () => {
 
     // toggle flag if the user meets criteria
     if(programFit.threshold >= annualincome) {
-      programFit.eligibility = 1
+      if(homeowner == "Own" | prog.flagOwnersOnly == 0) {
+        programFit.eligibility = 1
+      }
     } 
 
     //***RELEVANCE CHECK***
@@ -384,6 +390,9 @@ submitButton.addEventListener("click", () => {
     //***PRESENT SUGGESTION***
     // only populate on results page if user is eligible based on income
     if(programFit.eligibility != 0) {
+
+      //add one to our tally of programs that the user matched with
+      countProgramMatches++;
 
       //each program suggestion has a box
       const calcResultSuggestInd = document.createElement("div");
@@ -409,6 +418,17 @@ submitButton.addEventListener("click", () => {
     }
 
   });
+
+  //if user didn't match with any programs, still want to have some language come up
+  let responseEmpty = document.createElement("div");
+  responseEmpty.classList.add("responseEach");
+  // need the block to link to the program pages
+  responseEmpty.innerHTML = "Based on the information you provided, it does not appear " + 
+                            "that you are eligible for any of the programs we have in our" +
+                            " program library (link). As eligibility requirements may be " +
+                            "flexible, we encourage you to review the programs and contact " +
+                            "program providers for any programs you have interest in.";
+  calcResultSuggest.append(responseEmpty)
 
   //finally add all elements to parent
   calcResultContainer.append(calcResultSummary);
