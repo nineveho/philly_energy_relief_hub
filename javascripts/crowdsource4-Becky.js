@@ -199,6 +199,7 @@ backButton.classList.add("submit-button");
 const reliefPrograms = [
   {
     "name": 'Basic Systems Repair Program',
+    "innerpage" : "basicsystems.html",
     "1": 44300,
     "2": 50600,
     "3": 56950,
@@ -213,6 +214,7 @@ const reliefPrograms = [
   },
   {
     "name": 'LIHEAP',
+    "innerpage":"liheap.html",
     //150 perfect federal poverty level
     "1": 20385,
     "2": 27465,
@@ -228,6 +230,7 @@ const reliefPrograms = [
   },
   {
     "name": 'Heater Hotline',
+    "innerpage":"heaterhotline.html",
     //150 percent federal poverty level
     "1": 20385,
     "2": 27465,
@@ -243,6 +246,7 @@ const reliefPrograms = [
   },
   {
     "name": 'Weatherization Assistance Program',
+    "innerpage":"weatherization",
     //200 percent federal poverty level
     "1": 27180,
     "2": 36620,
@@ -353,7 +357,7 @@ submitButton.addEventListener("click", () => {
   calcResultSuggest.classList.add("calculator_result_suggestions");
 
   //maintain a tally of the number of programs that the user has matched with
-  const countProgramMatches = 0
+  countProgramMatches = 0
 
   // flesh out suggestions: function to evaluate program eligibility
   // and populate suggestions on calculator results page
@@ -403,9 +407,9 @@ submitButton.addEventListener("click", () => {
       responseEach.classList.add("responseEach");
       //should do more formatting on this, like bolding program title
       //also need the block to link to the program page for this program
-      responseEach.innerHTML = "Because you are interested in " + programFit.relevance.join(", ") + 
+      responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because you are interested in " + programFit.relevance.join(", ") + 
                                 " and your household income is below $" + programFit.threshold + 
-                                ", we believe " + prog.name + " could be a great fit for you.";
+                                ", we believe " + prog.name + " could be a great fit for you.</a>";
 
       console.log("Because you are interested in " + programFit.relevance.join(", ") + 
       " and your household income for " + householdsize + 
@@ -419,16 +423,20 @@ submitButton.addEventListener("click", () => {
 
   });
 
-  //if user didn't match with any programs, still want to have some language come up
-  let responseEmpty = document.createElement("div");
-  responseEmpty.classList.add("responseEach");
-  // need the block to link to the program pages
-  responseEmpty.innerHTML = "Based on the information you provided, it does not appear " + 
-                            "that you are eligible for any of the programs we have in our" +
-                            " program library (link). As eligibility requirements may be " +
-                            "flexible, we encourage you to review the programs and contact " +
-                            "program providers for any programs you have interest in.";
-  calcResultSuggest.append(responseEmpty)
+  if(countProgramMatches == 0) {
+
+    //if user didn't match with any programs, still want to have some language come up
+    let responseEmpty = document.createElement("div");
+    responseEmpty.classList.add("responseEach");
+    // need the block to link to the program pages
+    responseEmpty.innerHTML = "Based on the information you provided, it does not appear " + 
+                              "that you are eligible for any of the programs we have in our " +
+                              "<a href='program-resource.html'>program library</a>. As eligibility" +
+                              " requirements may be flexible, we encourage you to review the programs" +
+                              " and contact program providers for any programs you have interest in.";
+    calcResultSuggest.append(responseEmpty)
+
+  } 
 
   //finally add all elements to parent
   calcResultContainer.append(calcResultSummary);
