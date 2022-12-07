@@ -74,7 +74,7 @@
           </p>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="#about" class="btn-get-started">Get Started</a>
-            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+            <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span> Watch Video: Navigate the Website</span></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
@@ -87,23 +87,23 @@
       <div class="container position-relative">
         <div class="row gy-4 mt-5">
 
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-xl-3 col-md-6 linkbox" data-aos="fade-up" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-easel"></i></div>
-              <h4 class="title"><a href="audit-library.html" class="stretched-link">Audit</a></h4>
+              <h4 class="title"><a href="audit-library.html" class="stretched-link">Energy Audit</a></h4>
             </div>
           </div>
           <!--End Icon Box -->
 
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-xl-3 col-md-6 linkbox" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-gem"></i></div>
-              <h4 class="title"><a href="calculator-page.html" class="stretched-link">Calculator</a></h4>
+              <h4 class="title"><a href="calculator-page.html" class="stretched-link">Eligibility Calculator</a></h4>
             </div>
           </div>
           <!--End Icon Box -->
 
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-xl-3 col-md-6 linkbox" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-geo-alt"></i></div>
               <h4 class="title"><a href="program-resource.html" class="stretched-link">Program Resources</a></h4>
@@ -111,7 +111,7 @@
           </div>
           <!--End Icon Box -->
 
-          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="col-xl-3 col-md-6 linkbox" data-aos="fade-up" data-aos-delay="500">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-command"></i></div>
               <h4 class="title"><a href="" class="stretched-link">About</a></h4>
@@ -197,6 +197,57 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+
+      const descriptionLookUp = {
+        "Energy Audit" : "A home energy assessment / audit can help you understand the whole picture of your home's energy use, comfort, and safety.",
+        "Eligibility Calculator" : "By answering a few question, we will help you understand which energy relief program(s) you and your family are eligible for.",
+        "Program Resources" : "List of all energy relief programs avaliable for Philly residents.", 
+        "About" : "Find out who we are and how we hope to help you improve your home energy!"
+      }
+
+      const linkboxItems = document.getElementsByClassName("icon-box");
+      for (i=0; i < linkboxItems.length; i++){
+   
+        const box = linkboxItems[i]
+        const boxID = box.getElementsByClassName("stretched-link")[0].textContent
+        
+        const boxOgContent = box.innerHTML
+        const boxNewContent = box.getElementsByClassName("stretched-link")[0].textContent
+        
+        box.addEventListener("mouseover",()=>{
+          const newDiv = document.createElement("div")
+          newDiv.innerHTML = descriptionLookUp[boxID]
+          newDiv.classList.add("test") 
+          if (box.childElementCount = 2){
+            box.replaceChildren()
+            box.appendChild(newDiv)
+          }
+        })
+
+        box.addEventListener("mouseout",()=>{
+          box.innerHTML=boxOgContent
+        })
+      }
+
+      function mouseOver(e) {
+          e.style.color = "red";
+      }
+  </script>
+  <style>
+    .hero .test{
+      visibility: visible;
+      opacity: 100;
+      transition: all 0.3s ease-in-out;
+      color: whitesmoke;
+      font-weight:600;
+      /* width: 80%; */
+      text-align: left;
+      margin: 0 auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  </style>
 
 </body>
 

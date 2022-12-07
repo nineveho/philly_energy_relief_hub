@@ -216,12 +216,12 @@
                 </dl>
               </div>
             </div>
-          </div><!-- # 1. AIR LEAK item-->
+          </div><!-- # END OF 1. AIR LEAK item-->
 
           <!-- # 2. INSULATION item-->
           <div class="accordion-item">
             <h3 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+              <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                 <span class="num">2.</span>
                 Insulation
               </button>
@@ -290,7 +290,7 @@
 
               </div>
             </div>
-          </div><!-- # 2. INSULATION item-->
+          </div><!-- # 2. END OF INSULATION item-->
 
           <!-- # 3. HEATING item-->
           <div class="accordion-item">
@@ -336,7 +336,7 @@
             <p>
             Though not as thorough as professional accessors, you can get a better understanding of your home’s energy potential. When walking through your home, keep a checklist of areas you have inspected and problems you found.
             </p>
-            <img src="assets/img/homesection_1.jpeg">
+            <img id="dynamic-img" src="assets/img/homesection_1.png">
         </div>
       </div>
 
@@ -419,6 +419,46 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+  <script>
+
+    const image = document.querySelector("#dynamic-img")
+
+    const imageLookup ={
+      "AirLeak": "assets/img/AirLeak.png",
+      "Insulation": "./assets/img/Insulation.jpeg",
+      "Heating" : "./heating.png",
+      "Others" : "./others.png",
+
+    }
+
+
+    const toggleButton = document.getElementsByClassName("accordion-button")
+
+    for (let i = 0; i < toggleButton.length; i++) {
+
+      // console.log(toggleButton[i])
+
+      const but = toggleButton[i]
+
+      but.addEventListener("click", (e) => {
+
+        const cat = e.target.textContent.replace(/[^a-zA-Z]+/g, '')
+        // console.log(cat)
+
+        // console.log(imageLookup[cat])
+
+        image.src = imageLookup[cat]
+
+
+      })
+
+      
+    }
+    
+
+
+  </script>
 
 </body>
 
