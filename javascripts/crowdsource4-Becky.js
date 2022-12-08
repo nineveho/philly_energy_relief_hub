@@ -296,7 +296,7 @@ submitButton.addEventListener("click", () => {
   //parameters we've gotten from the user's input
   const householdsize = calculatorQuestions[0].response[0]
   const homeowner = calculatorQuestions[2].response
-  const interests = calculatorQuestions[3].response 
+  const interests = calculatorQuestions[3].response.map(x => calculatorQuestions[3].listOfOptions[x]) 
 
   // make annual income numeric at minimum of range
   dollar_position = calculatorQuestions[1].response[0].indexOf('$')
@@ -410,7 +410,7 @@ submitButton.addEventListener("click", () => {
       responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because you are interested in " + programFit.relevance.join(", ") + 
                                 " and your household income is below $" + programFit.threshold + 
                                 ", we believe " + prog.name + " could be a great fit for you.</a>";
-
+      console.log(programFit.relevance)
       console.log("Because you are interested in " + programFit.relevance.join(", ") + 
       " and your household income for " + householdsize + 
       " people is below $" + programFit.threshold + 
