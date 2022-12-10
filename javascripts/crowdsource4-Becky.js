@@ -7,7 +7,7 @@ const container = document.querySelector("#big_calculator_container");
 const title = document.createElement("h1");
 
 //Create object to hold all questions with uniform structure
-// 1. title of question
+// 1. title of question [one question also has a subtitle]
 // 2. abbrev, question title for response page
 // 3. list of options for the user to choose from
 // 4. single or multiple choice?
@@ -58,6 +58,7 @@ const calculatorQuestions = [
   },
   {
     title: "What are your concerns?",
+    subtitle: "Select all that apply.",
     abbrev: "concerns",
     listOfOptions: [
       "Direct Bill Payment",
@@ -80,7 +81,11 @@ calculatorQuestions.forEach((el, index) => {
 
   // Parent A: create the title, i.e. state the question
   const questionTitle = document.createElement("h3");
-  questionTitle.innerHTML = el.title;
+  if(typeof el.subtitle == 'undefined') {
+    questionTitle.innerHTML = '<h3>' + el.title + '</h3>';
+  } else {
+    questionTitle.innerHTML = '<h3>' + el.title + '</h3><br><h5>' + el.subtitle + '</h5>';
+  }
 
   /** this is called doc string
    * Add all of the other elements here below
@@ -180,7 +185,7 @@ calculatorQuestions.forEach((el, index) => {
 
 // create a submit button!
 const submitButton = document.createElement("button");
-submitButton.innerHTML = "submit!";
+submitButton.innerHTML = "See Program Recommendations";
 submitButton.classList.add("submit-button");
 container.append(submitButton);
 
@@ -188,6 +193,7 @@ container.append(submitButton);
 const backButton = document.createElement("button");
 backButton.innerHTML = "go back";
 backButton.classList.add("submit-button");
+backButton.style.width = "10rem";
 
 ////.....DECIDING CALCULATOR OUTPUT.....////
 
