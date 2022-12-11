@@ -2054,7 +2054,20 @@ section {
 
 .hero .icon-box .title a {
   color: #fff;
-  transition: 0.3s;
+  transition: all 0.3s ease-in-out;
+}
+
+.hero .icon-box .subtitle {
+  font-weight: 500;
+  font-size: 18px;
+  /* visibility: visible; */
+  opacity: 100;
+  text-align: center;
+}
+
+.hero .icon-box .subtitle a {
+  color: #fff;
+  transition: all 0.3s ease-in-out;
 }
 
 .hero .icon-box .icon {
@@ -2065,6 +2078,17 @@ section {
   font-size: 48px;
   line-height: 1;
   color: rgba(255, 255, 255, 0.6);
+}
+
+.hero .icon-box .hidden {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  visibility: hidden;
+  line-height: 0;
+
 }
 
 .hero .icon-box:hover {
