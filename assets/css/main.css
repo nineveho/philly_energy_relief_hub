@@ -2682,6 +2682,15 @@ section {
   font-family: var(--font-primary);
 }
 
+.footer-title{
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  font-family: var(--font-primary);
+  display: block;
+}
+
 .footer .footer-info p {
   font-size: 14px;
   font-family: var(--font-primary);
