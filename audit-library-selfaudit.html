@@ -142,12 +142,11 @@
                   <!--End Icon Box -->
       
                   <div class="col" data-aos="fade-up" data-aos-delay="300" align="center">
-                    <div class="icon-box-2">
+                    <div class="icon-box-2" id="download">
                       <div class="icon">
                         <i><img src="assets/img/icons/checklist.png"></i>
-                        <a href="assets/pdf/EnergyCheckList.pdf"></a>
                       </div>
-                      <h4 class="title">Download Checklist</h4>
+                      <h4 class="title"><a href="assets/pdf/EnergyCheckList.pdf" download="Home Self Audit Checklist">Download Checklist</a></h4>
                     </div>
                   </div>
                   <!--End Icon Box -->
@@ -454,14 +453,20 @@
 
 
       })
-
-      
     }
-    
-
-
   </script>
 
+  <style>
+    #download{
+      background: #f85a40;
+    }
+    #download:hover{
+      background: #ffccc4;
+    }
+    .hero .icon-box-2:hover {
+      background: #008777;
+    }
+  </style>
 </body>
-
 </html>
+
