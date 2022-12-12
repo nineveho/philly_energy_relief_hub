@@ -1961,7 +1961,7 @@ section {
 }
 
 .hero p {
-  color: rgba(255, 255, 255, 0.6);
+  color: #fff;
   font-weight: 400;
   margin-bottom: 30px;
 }
@@ -2955,6 +2955,12 @@ section {
     /* text-align: center; */
     padding-bottom: 2rem;
   }
+
+  .hero .container .link {
+    font-family: var(--font-primary);
+    color: var(--color-default);
+  }
+
   .hero .icon-box-2 {
     padding: 20px;
     position: relative;
