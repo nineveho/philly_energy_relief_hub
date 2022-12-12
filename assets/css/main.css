@@ -2786,7 +2786,7 @@ section {
 
  /* holds everything in calculator! */
  #big_calculator_container {
-  background-color: #006a5d;
+  background-color: #009786;
   text-align: center;
   border-radius: 2rem;
   color: whitesmoke;
@@ -2799,7 +2799,6 @@ section {
   overflow: hidden;
   max-height: 250vh;
   opacity: 1;
-
 }
 
 .hidden{
@@ -2820,6 +2819,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #006a5d;
 }
 
 /* holds dropdown of single-choice questions */
@@ -2846,26 +2846,26 @@ section {
 }
 
 .choices_normal:hover {
-  background-color: #ff9686;
+  background-color: rgb(255, 205, 113);
   transition: 0.2s ease-in-out;
 }
 
 .choices_selected {
-  background-color: white;
+  background-color: rgb(255, 205, 113);
   color:#00796b;
   font-weight: bold;
   /* font-size: 1.05rem; */
 }
 
 .choices_selected:hover {
-  background-color: white;
+  background-color: rgb(255, 205, 113);
   color:#00796b;
   font-weight: bold;
 }
 
 .submit-button{
-  background-color:#00b6a1;
-  color: white;
+  background-color:#00796b;
+  color: whitesmoke;
   font-weight: bold;
   font-size: x-large;
   margin-top: 3rem;
@@ -2875,7 +2875,7 @@ section {
 }
 
 .submit-button:hover{
-  background-color: #f85a40;
+  background-color: rgb(255, 205, 113);
   transition: 0.1s ease-in-out;
 }
 
@@ -2908,13 +2908,15 @@ section {
   display: grid;
   grid-template-rows: auto;
   gap: 1rem;
+  background-color:wheat;
 }
 
 .calculator_result_summary_items {
-  border: forestgreen 2px;
+  border: white 2px;
+  background-color: whitesmoke;
   border-style: solid;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: .5rem;
   align-content: center;
   /* why border not working  */
 }
@@ -2922,7 +2924,8 @@ section {
 .responseEach {
   padding: 1rem;
   margin: 1rem;
-  background-color: rgb(236, 243, 255);
+  background-color: white;
+  border-radius: .5rem;
 }
 
 .calculator_result_suggestions {
