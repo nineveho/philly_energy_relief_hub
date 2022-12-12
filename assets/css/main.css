@@ -2897,6 +2897,12 @@ section {
   overflow: hidden;
 }
 
+#big_calculator_result h2{
+  color: var(--color-primary);
+  font-weight: bolder;
+  margin-bottom: 3rem;
+}
+
 .calculator_result_summary {
   /* background-color: rgb(157, 255, 95); */
   /* border: var(--color-primary);
@@ -2933,7 +2939,7 @@ section {
 
 .responseEach {
   color: var(--color-primary);
-  padding: 1rem;
+  padding: .5rem;
   margin: 1rem;
   /* background-color: white; */
   border-color: whitesmoke;
@@ -2949,6 +2955,8 @@ section {
   height: 100%;
   padding: 3rem;
   border-radius: 1rem;
+  /* display: grid; */
+  /* grid-template-rows:2rem; */
 }
 
 .calculator_result_suggestions_items {
@@ -2958,7 +2966,7 @@ section {
   background-color: whitesmoke;
   padding: 1rem;
   align-content: center;
-  /* why border not working  */
+  margin: 1.4rem;
 }
 
 

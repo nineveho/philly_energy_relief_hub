@@ -66,7 +66,7 @@ const calculatorQuestions = [
       "Broken Heat or A/C",
       "General Home Repairs",
       "Solar Power Opportunities",
-      "Other",
+      "Other Resources",
     ],
     questionType: "multiple",
     response: [],
@@ -291,6 +291,15 @@ submitButton.addEventListener("click", () => {
   calcResultContainer.style.opacity = 1
   window.scrollTo(0, 0);
 
+  // //look here
+
+  const calculatorTitle = document.createElement("h2")
+  calculatorTitle.innerHTML = "Results:"
+  const calculatorTitle2 = document.createElement("h2")
+  calculatorTitle2.innerHTML = "Program Eligibility"
+  calcResultContainer.append(calculatorTitle)
+  calcResultContainer.append(calculatorTitle2)
+
   //get user's values from dropdowns
   calculatorQuestions.forEach((el) => {
     if(el.questionType == "single") {
@@ -325,7 +334,7 @@ submitButton.addEventListener("click", () => {
    */
   const calcResultSummary = document.createElement("div");
   calcResultSummary.classList.add("calculator_result_summary");
-  const calcResultSummaryTitle = document.createElement("h4");
+  const calcResultSummaryTitle = document.createElement("h5");
   calcResultSummaryTitle.innerHTML = "Your Responses";
 
   calcResultSummary.append(calcResultSummaryTitle);
@@ -361,6 +370,11 @@ submitButton.addEventListener("click", () => {
   //3 Create a block for suggestions 
   const calcResultSuggest = document.createElement("div");
   calcResultSuggest.classList.add("calculator_result_suggestions");
+
+  const calcProgramSummaryTitle = document.createElement("h5");
+  calcProgramSummaryTitle.innerHTML = "Programs Suggested For You";
+
+  calcResultSuggest.append(calcProgramSummaryTitle);
 
   //maintain a tally of the number of programs that the user has matched with
   countProgramMatches = 0
