@@ -427,14 +427,14 @@ submitButton.addEventListener("click", () => {
       responseEach.classList.add("responseEach");
       //should do more formatting on this, like bolding program title
       //also need the block to link to the program page for this program
-      responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because you are interested in " + programFit.relevance.join(", ") + 
-                                " and your household income is below $" + programFit.threshold + 
-                                ", we believe " + prog.name + " could be a great fit for you.</a>";
-      console.log(programFit.relevance)
-      console.log("Because you are interested in " + programFit.relevance.join(", ") + 
-      " and your household income for " + householdsize + 
-      " people is below $" + programFit.threshold + 
-      ", we believe " + prog.name + " could be a great fit for you.");
+      if(length(programFit.relevance) > 0) {
+        responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because your household income is below $" + programFit.threshold + 
+                                  ", we believe " + prog.name + " could be a great fit for you.</a>";
+      } else {
+        responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because you are interested in " + programFit.relevance.join(" and ") + 
+                                  " and your household income is below $" + programFit.threshold + 
+                                  ", we believe " + prog.name + " could be a great fit for you.</a>";
+      }
       
       //add children to the parent
       calcResultSuggestInd.append(responseEach);
