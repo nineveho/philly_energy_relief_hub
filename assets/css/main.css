@@ -3003,7 +3003,7 @@ section {
   
   .audit-sticky{
     position:sticky;
-    top: 25%;
+    top: 20%;
     padding-bottom: 2rem;
   }
   
