@@ -2885,12 +2885,13 @@ section {
   gap: 1rem;
   border: var(--color-primary);
   border-style: solid;
+  border-width: 5px;
   border-radius: 2rem;
   /* niko commented this out to allow for natural (auto) flow */
   /* height: 100vh; */
   padding: 5rem;
   text-align: center;
-  background-color: azure;
+  background-color: whitesmoke;
   opacity: 0;
   transition: 0.5s ease-in-out;
   overflow: hidden;
@@ -2898,8 +2899,8 @@ section {
 
 .calculator_result_summary {
   /* background-color: rgb(157, 255, 95); */
-  border: var(--color-primary);
-  border-style: solid;
+  /* border: var(--color-primary);
+  border-style: solid; */
   border-radius: 1rem;
   /* temporary */
   width: 100%;
@@ -2909,23 +2910,36 @@ section {
   grid-template-rows: auto;
   gap: 1rem;
   background-color:wheat;
+  padding: 3rem;
 }
 
 .calculator_result_summary_items {
-  border: white 2px;
-  background-color: whitesmoke;
-  border-style: solid;
+  /* border: white 2px;
+  border-style: solid; */
   border-radius: 1rem;
+  background-color: whitesmoke;
   padding: .5rem;
+  padding-top: 2rem;
   align-content: center;
-  /* why border not working  */
+}
+
+.calculator_result_summary_items h5{
+  padding: .5rem;
+  border: #f7f7f7;
+  border-bottom:#008777;
+  border-width: 2px;
+  border-style:solid;
 }
 
 .responseEach {
+  color: var(--color-primary);
   padding: 1rem;
   margin: 1rem;
-  background-color: white;
+  /* background-color: white; */
+  border-color: whitesmoke;
   border-radius: .5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .calculator_result_suggestions {
@@ -2933,7 +2947,7 @@ section {
   /* temporary */
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 3rem;
   border-radius: 1rem;
 }
 
@@ -2941,6 +2955,7 @@ section {
   border: forestgreen 2px;
   border-style: solid;
   border-radius: 1rem;
+  background-color: whitesmoke;
   padding: 1rem;
   align-content: center;
   /* why border not working  */
