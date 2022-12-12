@@ -426,12 +426,11 @@ submitButton.addEventListener("click", () => {
       let responseEach = document.createElement("div");
       responseEach.classList.add("responseEach");
       //should do more formatting on this, like bolding program title
-      //also need the block to link to the program page for this program
-      if(programFit.relevance.length > 0) {
+      if(programFit.relevance.length == 0) {
         responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because your household income is below $" + programFit.threshold + 
                                   ", we believe " + prog.name + " could be a great fit for you.</a>";
       } else {
-        responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because you are interested in " + programFit.relevance.join(" and ") + 
+        responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because you are interested in " + programFit.relevance.join(" and ").toLowerCase() + 
                                   " and your household income is below $" + programFit.threshold + 
                                   ", we believe " + prog.name + " could be a great fit for you.</a>";
       }
