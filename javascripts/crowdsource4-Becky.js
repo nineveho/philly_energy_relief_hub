@@ -427,7 +427,7 @@ submitButton.addEventListener("click", () => {
       responseEach.classList.add("responseEach");
       //should do more formatting on this, like bolding program title
       //also need the block to link to the program page for this program
-      if(length(programFit.relevance) > 0) {
+      if(programFit.relevance.length > 0) {
         responseEach.innerHTML = "<a href='" + prog.innerpage + "'>" + "Because your household income is below $" + programFit.threshold + 
                                   ", we believe " + prog.name + " could be a great fit for you.</a>";
       } else {
