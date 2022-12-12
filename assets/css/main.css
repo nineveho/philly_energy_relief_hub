@@ -1712,6 +1712,10 @@ section {
   box-shadow: none;
 }
 
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+}
+
 /*--------------------------------------------------------------
 # Recent Blog Posts Section
 --------------------------------------------------------------*/
@@ -2042,8 +2046,14 @@ section {
   border-radius: 8px;
   z-index: 1;
   height: 100%;
-  width: 100%;
+  max-width: 100%;
   text-align: center;
+}
+
+.single {
+  width: 500px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .hero .icon-box .title {
